@@ -41,8 +41,10 @@ wait $pid2
 wd=$PWD
 cd "$datadir"/input
 rm -f ../docs/*
+# THIS IS TOO LONG WHEN RUN ON THE PRESENT MODEL: SPLIT CHROMOSOMES
 time parallel "$wd/mean {} ~/Work/dataset/fastq2cloud/hg38/MCmodel/6mer/{.}.tsv.table | cut -d' ' -f2- > ../docs/{.}.docs" ::: chr*.multiread 
 time parallel "$wd/meanRC {} ~/Work/dataset/fastq2cloud/hg38/MCmodel/6mer/{.}.tsv.table | cut -d' ' -f2- > ../docs/{.}.docs_RC" ::: chr*.multiread 
+
 cd $wd
 
 # python /home/garner1/Work/pipelines/fastq2cloud/structure/word2vector.py ~/Work/dataset/fastq2cloud/hg19/corpus
